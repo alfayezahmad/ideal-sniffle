@@ -56,7 +56,8 @@ The system classifies forecasts into EPA-aligned categories to generate automate
 
 ### 🛠️ Installation
 ```bash
-git clone [https://github.com/alfayezahmad/Lucknow-PM2.5-Forecast.git](https://github.com/your-username/Lucknow-PM2.5-Forecast.git)
+git clone https://github.com/alfayezahmad/ideal-sniffle.git
+cd Lucknow-PM2.5-Forecast
 pip install numpy pandas matplotlib seaborn scikit-learn
 ```
 
