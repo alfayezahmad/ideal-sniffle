@@ -1,4 +1,4 @@
-# 🌍 PM2.5 Air Quality Forecasting (Lucknow)
+# PM2.5 Air Quality Forecasting (Lucknow)
 > **Proof-of-Concept:** Predictive Modeling and Diagnostic Analysis of Urban Air Quality.
 
 This repository contains a machine learning pipeline engineered to forecast daily **PM2.5** (particulate matter ≤ 2.5 µm) concentrations in Lucknow, India. The project focuses on feature engineering (Temporal Lags) and model comparison to provide actionable public health recommendations.
@@ -7,7 +7,7 @@ This repository contains a machine learning pipeline engineered to forecast dail
 
 ---
 
-### 📊 Project Architecture
+### Project Architecture
 The pipeline follows a structured data science workflow:
 1.  **Data Ingestion:** Processing daily pollutant datasets (CPCB standards) with forward/backward fill persistence for gap handling.
 2.  **Feature Engineering:**
@@ -17,7 +17,7 @@ The pipeline follows a structured data science workflow:
 
 ---
 
-### 📉 Mathematical Evaluation
+### Mathematical Evaluation
 We utilize four formal definitions to evaluate model fidelity and feature construction:
 
 1. **Mean Absolute Error (MAE):** Represents the average magnitude of errors without considering their direction.
@@ -34,13 +34,13 @@ We utilize four formal definitions to evaluate model fidelity and feature constr
 
 ---
 
-### 🚀 Key Insights
+### Key Insights
 - **Performance:** **Random Forest** outperformed Linear Regression by effectively capturing the sharp non-linear peaks in PM2.5 levels.
 - **Feature Importance:** Time-based features (Rolling Means) and CO/SO2 concentrations were identified as the highest predictors of localized spikes.
 
 ---
 
-### 📑 Recommendations Framework
+### Recommendations Framework
 The system classifies forecasts into EPA-aligned categories to generate automated health advisories:
 
 | Category | PM2.5 Range (µg/m³) | Recommendation |
@@ -54,7 +54,7 @@ The system classifies forecasts into EPA-aligned categories to generate automate
 
 ---
 
-### 🛠️ Installation
+### Installation
 ```bash
 git clone https://github.com/alfayezahmad/ideal-sniffle.git
 cd Lucknow-PM2.5-Forecast
