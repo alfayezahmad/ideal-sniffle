@@ -1,7 +1,7 @@
 """
-Project: Lucknow PM2.5 Forecasting (Proof-of-Concept)
+Project: Lucknow PM2.5 Forecasting (Cloud-Ready Microservice)
 Author: Alfayez Ahmad
-Copyright: (c) 2025
+Copyright: (c) 2026
 License: MIT
 """
 
@@ -50,7 +50,7 @@ class AirQualityForecaster:
         rmse = np.sqrt(mean_squared_error(y_true, y_pred))
         r2 = r2_score(y_true, y_pred)
         
-        logger.info(f"[{model_name}] R²: {r2:.3f} | MAE: {mae:.2f}")
+        logger.info(f"[{model_name}] R^2: {r2:.3f} | MAE: {mae:.2f}")
         return {"MAE": mae, "RMSE": rmse, "R2": r2}
 
     def get_health_advice(self, pm25: float) -> Tuple[str, List[str]]:
@@ -67,9 +67,13 @@ class AirQualityForecaster:
 
 # --- MAIN EXECUTION ---
 if __name__ == "__main__":
-    desktop = os.path.join(os.path.expanduser("~"), "Desktop")
-    path = os.path.join(desktop, "ML Lucknow.csv")
     
+    path = os.environ.get("DATA_PATH", "./data/ML_Lucknow.csv")
+    
+    if not os.path.exists(path):
+        logger.error(f"Data file not found at {path}. Please mount the volume or verify the path.")
+        exit(1)
+        
     forecaster = AirQualityForecaster(path)
     data = forecaster.load_and_clean()
 
@@ -92,6 +96,7 @@ if __name__ == "__main__":
     next_day_val = preds[-1]
     category, recs = forecaster.get_health_advice(next_day_val)
 
-    print(f"\n🚀 Next-Day Forecast: {next_day_val:.2f} µg/m³")
+    print(f"\nNext-Day Forecast: {next_day_val:.2f} ug/m3")
     print(f"Status: {category}")
-    for r in recs: print(f" - {r}")
+    for r in recs: 
+        print(f" - {r}")
