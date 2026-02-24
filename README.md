@@ -1,9 +1,7 @@
 # PM2.5 Air Quality Forecasting (Lucknow)
-> **Proof-of-Concept:** Predictive Modeling and Diagnostic Analysis of Urban Air Quality.
+> **Cloud-Ready Microservice:** Predictive Modeling and Diagnostic Analysis of Urban Air Quality.
 
-This repository contains a machine learning pipeline engineered to forecast daily **PM2.5** (particulate matter ≤ 2.5 µm) concentrations in Lucknow, India. The project focuses on feature engineering (Temporal Lags) and model comparison to provide actionable public health recommendations.
-
-
+This repository contains a containerized machine learning pipeline engineered to forecast daily **PM2.5** (particulate matter ≤ 2.5 µm) concentrations in Lucknow, India. The project focuses on feature engineering (Temporal Lags) and model comparison to provide actionable public health recommendations.
 
 ---
 
@@ -54,15 +52,34 @@ The system classifies forecasts into EPA-aligned categories to generate automate
 
 ---
 
-### Installation
+### Deployment & Installation
+
+This forecasting pipeline is fully containerized for reproducible execution across different environments. Ensure your dataset is placed at `./data/ML_Lucknow.csv` or specify a custom path via the `DATA_PATH` environment variable.
+
+**Option A: Run via Docker (Recommended)**
 ```bash
-git clone https://github.com/alfayezahmad/ideal-sniffle.git
-cd Lucknow-PM2.5-Forecast
-pip install numpy pandas matplotlib seaborn scikit-learn
+git clone [https://github.com/alfayezahmad/ideal-sniffle.git](https://github.com/alfayezahmad/ideal-sniffle.git)
+cd ideal-sniffle
+
+# 1. Build the container image
+docker build -t ideal-sniffle .
+
+# 2. Execute the model
+docker run ideal-sniffle
+```
+**Option B: Local Development**
+```bash
+git clone [https://github.com/alfayezahmad/ideal-sniffle.git](https://github.com/alfayezahmad/ideal-sniffle.git)
+cd ideal-sniffle
+
+# Install strict dependencies
+pip install -r requirements.txt
+
+# Run the pipeline
+python main.py
 ```
 
 ---
 
 ### License
-
-Distributed under the MIT License. Author: Alfayez Ahmad | Copyright: © 2025
+Distributed under the MIT License. Author: Alfayez Ahmad | Copyright: © 2026
