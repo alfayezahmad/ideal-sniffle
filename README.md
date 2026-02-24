@@ -52,6 +52,29 @@ The system classifies forecasts into EPA-aligned categories to generate automate
 
 ---
 
+### System Architecture & Data Flow
+
+This microservice is designed to ingest local meteorology data and execute inference within an isolated container runtime. 
+
+```mermaid
+graph TD
+    A[(Proprietary CSV Data)] -->|Mounted Volume / ENV path| B
+    
+    subgraph Docker Container [Containerized Microservice: python:3.10-slim]
+        B[Data Ingestion & Preprocessing]
+        C[Feature Engineering: Lags & Rolling Means]
+        D[Scikit-Learn: Random Forest Inference]
+        
+        B --> C
+        C --> D
+    end
+    
+    D -->|Stdout / Logs| E[Predicted PM2.5 Levels]
+    D -->|Logic Rule Engine| F[Automated Health Advisories]
+```
+
+---
+
 ### Data Requirements (Proprietary)
 *Note: The raw meteorological and pollution dataset used to train this model is proprietary and not included in this public repository.*
 
@@ -60,7 +83,6 @@ To run this pipeline with your own data, provide a CSV file at `./data/ML_Luckno
 * `pm25`: Target variable (float)
 * `co`, `so2`, `no2`, `o3`: Chemical features (float)
 * `temp`, `humidity`: Meteorological features (float)
-
 ---
 
 ### Deployment & Installation
@@ -69,7 +91,7 @@ This forecasting pipeline is fully containerized for reproducible execution acro
 
 **Option A: Run via Docker (Recommended)**
 ```bash
-git clone [https://github.com/alfayezahmad/ideal-sniffle.git](https://github.com/alfayezahmad/ideal-sniffle.git)
+git clone https://github.com/alfayezahmad/ideal-sniffle.git
 cd ideal-sniffle
 
 # 1. Build the container image
@@ -80,7 +102,7 @@ docker run ideal-sniffle
 ```
 **Option B: Local Development**
 ```bash
-git clone [https://github.com/alfayezahmad/ideal-sniffle.git](https://github.com/alfayezahmad/ideal-sniffle.git)
+git clone https://github.com/alfayezahmad/ideal-sniffle.git
 cd ideal-sniffle
 
 # Install strict dependencies
@@ -89,6 +111,17 @@ pip install -r requirements.txt
 # Run the pipeline
 python main.py
 ```
+
+---
+
+### Roadmap & Future Work
+
+Currently, this pipeline operates as a standalone containerized batch-inference script. The next phase of R&D focuses on evolving it into a fully distributed, cloud-native microservice:
+
+- [ ] **REST API Integration:** Wrap the inference engine in **FastAPI** to serve real-time predictions via HTTP endpoints rather than standard output.
+- [ ] **Continuous Integration (CI/CD):** Implement GitHub Actions to automate Docker image builds and testing upon new commits.
+- [ ] **Kubernetes Orchestration:** Develop Helm charts/K8s manifests to deploy and scale the containerized API within a distributed cluster.
+- [ ] **Real-Time Data Ingestion:** Transition from static CSV files to a live MQTT or Apache Kafka stream connected to physical IoT air quality sensors.
 
 ---
 
