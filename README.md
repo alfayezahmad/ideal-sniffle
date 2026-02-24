@@ -52,6 +52,17 @@ The system classifies forecasts into EPA-aligned categories to generate automate
 
 ---
 
+### Data Requirements (Proprietary)
+*Note: The raw meteorological and pollution dataset used to train this model is proprietary and not included in this public repository.*
+
+To run this pipeline with your own data, provide a CSV file at `./data/ML_Lucknow.csv` with the following schema:
+* `date`: (YYYY-MM-DD format)
+* `pm25`: Target variable (float)
+* `co`, `so2`, `no2`, `o3`: Chemical features (float)
+* `temp`, `humidity`: Meteorological features (float)
+
+---
+
 ### Deployment & Installation
 
 This forecasting pipeline is fully containerized for reproducible execution across different environments. Ensure your dataset is placed at `./data/ML_Lucknow.csv` or specify a custom path via the `DATA_PATH` environment variable.
