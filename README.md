@@ -1,6 +1,11 @@
 # PM2.5 Air Quality Forecasting (Lucknow)
 > **Cloud-Ready Microservice:** Predictive Modeling and Diagnostic Analysis of Urban Air Quality.
 
+[![Kaggle](https://img.shields.io/badge/Kaggle-Notebook-blue?logo=kaggle)](https://www.kaggle.com/code/alfayezahmad/lucknow-aqi-prediction-using-machine-learning)
+[![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python&logoColor=white)](#)
+[![Docker](https://img.shields.io/badge/Docker-Containerized-blue?logo=docker&logoColor=white)](#)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine_Learning-orange?logo=scikit-learn&logoColor=white)](#)
+
 This repository contains a containerized machine learning pipeline engineered to forecast daily **PM2.5** (particulate matter ≤ 2.5 µm) concentrations in Lucknow, India. The project focuses on feature engineering (Temporal Lags) and model comparison to provide actionable public health recommendations.
 
 ---
